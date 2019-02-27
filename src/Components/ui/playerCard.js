@@ -8,8 +8,15 @@ const PlayerCard = (props) => {
                 style={{
                     background: `#f2f9ff url(${props.bck})`
                 }}
-            >
-
+            ></div>
+            <div className="player_card_nfo">
+                <div className="player_card_number">
+                    {props.number}
+                </div>
+                <div className="player_card_name">
+                    <span>{props.name}</span>
+                    <span>{props.lastname}</span>
+                </div>
             </div>
         </div>
     );
