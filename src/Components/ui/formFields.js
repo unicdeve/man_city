@@ -5,14 +5,14 @@ const FormField = ({formdata, id, change}) => {
 
   const showError = () => {
     let errorMessage = (
-      <did className="error_label">
+      <div className="error_label">
         {
           formdata.validation && !formdata.valid ?
             formdata.validationMessage
             :
             null
         }
-      </did>
+      </div>
     )
 
     return errorMessage;
