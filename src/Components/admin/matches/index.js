@@ -57,7 +57,7 @@ export default class AdminMatches extends Component {
                         </TableCell>
 
                         <TableCell>
-                          <Link to={`/admin/admin_matches/edit_match/${match.id}`}>
+                          <Link to={`/admin_matches/edit_match/${match.id}`}>
                             {match.away} <strong> - </strong> {match.local}
                           </Link>
                         </TableCell>
