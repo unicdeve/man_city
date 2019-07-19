@@ -48,11 +48,11 @@ export default class SignIn extends Component {
     const newElement = { ...newFormdata[element.id] };
 
     newElement.value = element.event.target.value;
-    
+
     let validData = validate(newElement);
     newElement.valid = validData[0];
     newElement.validationMessage = validData[1];
-    
+
     newFormdata[element.id] = newElement;
     console.log(newElement)
     this.setState({
@@ -63,27 +63,27 @@ export default class SignIn extends Component {
 
   submitForm(event) {
     event.preventDefault();
-    
+
     let dataToSubmit = {};
     let formIsValid = true;
 
-    for(let key in this.state.formdata){
+    for (let key in this.state.formdata) {
       dataToSubmit[key] = this.state.formdata[key].value;
       formIsValid = this.state.formdata[key].valid && formIsValid;
     }
 
-    if(formIsValid){
+    if (formIsValid) {
       firebase.auth()
-      .signInWithEmailAndPassword(
-        dataToSubmit.email,
-        dataToSubmit.password
-      ).then(() => {
-        this.props.history.push('/dashboard');
-      }).catch(error => {
-        this.setState({
-          formError: true
+        .signInWithEmailAndPassword(
+          dataToSubmit.email,
+          dataToSubmit.password
+        ).then(() => {
+          this.props.history.push('/dashboard');
+        }).catch(error => {
+          this.setState({
+            formError: true
+          })
         })
-      })
 
     } else {
       this.setState({
@@ -95,23 +95,23 @@ export default class SignIn extends Component {
   render() {
     return (
       <div className="container">
-        <div className="signin_wrapper" style={{margin:'100px'}}>
+        <div className="signin_wrapper" style={{ margin: '100px' }}>
           <form onSubmit={(event) => this.submitForm(event)}>
             <h2>Please Login</h2>
 
-            <FormField 
+            <FormField
               id={'email'}
               formdata={this.state.formdata.email}
               change={(element) => this.updateForm(element)}
             />
 
-            <FormField 
+            <FormField
               id={'password'}
               formdata={this.state.formdata.password}
               change={(element) => this.updateForm(element)}
             />
 
-            { this.state.formError ? 
+            {this.state.formError ?
               (<div className="error_label">Something is wrong, try again!!</div>)
               : null
             }
